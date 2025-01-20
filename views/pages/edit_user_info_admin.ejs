@@ -1,0 +1,23 @@
+<%- layout('./layout/boilerplate') %>
+    <section class="flex justify-center items-center mx-5 min-h-screen">
+        <div class="w-auto md:w-96">
+            <form action="/admin/edit/user/<%= data._id %>?_method=PUT" method="post">
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    Username
+                    <input type="text" class="grow" name="data[username]" value="<%= data.username %>" required/>
+                </label>
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    Email
+                    <input type="text" class="grow" name="data[email]" value="<%= data.email %>" required/>
+                </label>
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    UserID
+                    <input type="text" class="grow" value="<%= data._id %>" required disabled/>
+                </label>
+                <button class="btn btn-outline btn-success rounded-none">Save Changes</button>
+            </form>
+            <form action="/admin/delete/user/<%= data._id %>?_method=DELETE" method="post">
+                <button class="btn btn-outline btn-error rounded-none mt-5">Delete</button>
+            </form>
+        </div>
+    </section>

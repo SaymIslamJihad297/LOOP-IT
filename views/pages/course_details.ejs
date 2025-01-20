@@ -1,0 +1,80 @@
+<%- layout('./layout/boilerplate') %>
+  <section class="mx-10 my-10">
+    <div class="flex justify-center">
+      <div class="card bg-base-100 w-96 shadow-xl">
+        <figure>
+          <img src="<%= course.imageLink %>" alt="Shoes" class="p-5" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title text-white">
+            <%= course.courseName %>
+              <div class="badge badge-secondary">PRO</div>
+          </h2>
+          <p>
+            <%= course.courseDetails %>
+          </p>
+          <div class="card-actions justify-end">
+            <div class="badge badge-outline badge-accent hover:scale-110 cursor-pointer">
+              <%= course.corsePrice %> &#2547;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 offset-3 mt-3">
+      <hr class="my-10">
+      <% if(currUser){ %>
+        <h4 class="text-3xl font-bold text-green-400">Leave a Review</h4>
+        <form action="/home/review/<%= course._id %>" method="post" class="needs-validation">
+          <div class="mt-3 mb-3">
+            <label for="rating" class="form-label text-xl">Rating</label>
+            <fieldset class="starability-slot">
+
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <div class="mt-3 mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea class="form-control bg-white border-2 text-black border-black rounded-md" name="review[comment]" id="comment"
+              cols="30" rows="10" required></textarea>
+          </div>
+          <button class="btn btn-dark">Submit</button>
+        </form>
+        <hr class="my-10">
+        <% } %>
+
+          <!-- all reviews -->
+          <h1 class="text-3xl text-black"><b>ALL Reviews</b></h1>
+          <div class="col">
+            <% for(review of course.reviews){ %>
+              <div class="card">
+                <div class="card-body sldkjfsd">
+                  <h5 class="card-title">@<%= review.author.username %>
+                  </h5>
+                  <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                  <p class="card-text">
+                    <%= review.comment %>
+                  </p>
+                  <% if(currUser && currUser._id.equals(review.author._id)){ %>
+                    <form action="/home/review/<%= review._id %>/<%= course._id %>?_method=DELETE" method="post">
+                      <button class="btn btn-sm btn-dark">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+
+              </div>
+              <% } %>
+          </div>
+    </div>
+  </section>

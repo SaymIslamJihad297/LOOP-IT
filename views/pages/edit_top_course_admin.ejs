@@ -1,0 +1,27 @@
+<%- layout('./layout/boilerplate') %>
+    <section class="flex justify-center items-center mx-5 min-h-screen">
+        <div class="w-auto md:w-96">
+            <form action="/admin/edit/topcourse/<%= data._id %>?_method=PUT" method="post">
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    Name
+                    <input type="text" class="grow" name="data[courseName]" value="<%= data.courseName %>" required/>
+                </label>
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    Details
+                    <input type="text" class="grow" name="data[courseDetails]" value="<%= data.courseDetails %>" required/>
+                </label>
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    Image
+                    <input type="text" class="grow" name="data[imageLink]" value="<%= data.imageLink %>" required/>
+                </label>
+                <label class="input input-bordered flex items-center gap-2 my-5">
+                    Price
+                    <input type="number" class="grow" name="data[corsePrice]" value="<%= data.corsePrice %>" required/>
+                </label>
+                <button class="btn btn-outline btn-success rounded-none">Save Changes</button>
+            </form>
+            <form action="/admin/delete/topcourse/<%= data._id %>?_method=DELETE" method="post">
+                <button class="btn btn-outline btn-error rounded-none mt-5">Delete</button>
+            </form>
+        </div>
+    </section>

@@ -1,0 +1,46 @@
+<%- layout('./layout/boilerplate') %>
+    <style>
+        @media (max-width: 640px) {
+            #mainpart {
+                text-align: center;
+            }
+        }
+    </style>
+    <section id="mainpart" class=" mx-10 mt-10 ">
+        <div class="flex flex-col md:flex-row my-10">
+            <div class="mt-20 mr-10 w-full">
+                <h1 class="text-5xl font-extrabold text-black">SHAPE YOUR <br>
+                    <h1 class="text-5xl font-extrabold text-green-600 mt-3">SKILL</h1>
+                </h1>
+                <p class="mt-10 text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe magnam
+                    corrupti ab enim rerum illo nobis, sequi eligendi consequuntur officiis.</p>
+                <button class="btn btn-outline btn-success rounded-none my-10">Learn More</button>
+            </div>
+            <div class="flex items-center">
+                <img src="https://nebulas-it.com/wp-content/uploads/2017/03/1.png" alt="Img">
+            </div>
+        </div>
+
+        <!-- top courses -->
+        <div>
+            <h1 class="text-3xl font-bold text-center text-green-600 my-10">Top Courses</h1>
+            <div class="flex flex-wrap justify-around gap-5">
+                <% for(data of datas){ %>
+                    <div class="card glass w-64 mt-8 hover:scale-110">
+                        <figure>
+                            <img src="<%= data.imageLink %>"
+                                alt="car!" class="p-5" />
+                        </figure>
+                        <div class="card-body">
+                            <h2 class="card-title text-black"><%= data.courseName %></h2>
+                            <p class="text-black"><%= data.courseDetails %></p>
+                            <div class="card-actions justify-end">
+                                <a href="/home/course/details/<%= data._id %>"><button class="btn btn-outline btn-success rounded-none">Learn now!</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        
+    </section>

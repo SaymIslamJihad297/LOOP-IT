@@ -1,0 +1,85 @@
+<%- layout('./layout/boilerplate') %>
+    <section class="mx-10">
+        <h1 class="text-3xl text-black font-extrabold text-center my-5">Welcome To Admin Pannel</h1>
+
+        <!-- top courses -->
+        <div>
+            <details class="collapse bg-base-200">
+                <summary class="collapse-title text-xl font-medium">Top Courses</summary>
+                <div class="collapse-content">
+                    <% for(data of datas){ %>
+                        <div class="my-5 flex justify-between">
+                            <h2>
+                                <%= data.courseName %>
+                            </h2>
+                            <a href="/admin/edit/topcourse/<%= data._id %>"><i
+                                    class="fa-solid fa-pen-to-square">Edit</i></a>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="flex justify-center">
+                    <a href="/admin/addnew/topcourse"><button class="btn btn-outline btn-success rounded-none my-5">Add
+                            new Top course</button></a>
+                </div>
+            </details>
+        </div>
+        <!-- uesrs -->
+        <div class="my-10">
+            <details class="collapse bg-base-200">
+                <summary class="collapse-title text-xl font-medium">Users</summary>
+                <div class="collapse-content">
+                    <% for(user of users){ %>
+                        <div class="my-5 flex justify-between">
+                            <h2>
+                                <%= user.username %>
+                            </h2>
+                            <a href="/admin/edit/user/<%= user._id %>"><i class="fa-solid fa-pen-to-square">Edit</i></a>
+                        </div>
+                        <% } %>
+                </div>
+            </details>
+        </div>
+        <!-- contacts -->
+        <details class="collapse bg-base-200">
+            <summary class="collapse-title text-xl font-medium">Contacts</summary>
+            <hr>
+            <div class="collapse-content w-full">
+                <% for(contact of contacts){ %>
+                    <div class="bg-base-200 collapse my-3">
+                        <input type="checkbox" class="peer" />
+                        <div
+                            class="collapse-title bg-green-400 text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                            <%= contact.email %>
+                        </div>
+                        <div
+                            class="collapse-content bg-green-400 text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                            <div class="chat chat-start">
+                                <div class="chat-image avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img alt="Tailwind CSS chat bubble component"
+                                            src="https://static.vecteezy.com/system/resources/thumbnails/009/749/751/small_2x/avatar-man-icon-cartoon-male-profile-mascot-illustration-head-face-business-user-logo-free-vector.jpg" />
+                                    </div>
+                                </div>
+                                <div class="chat-bubble">
+                                    <%= contact.phone %>
+                                </div>
+                            </div>
+                            <div class="chat chat-start">
+                                <div class="chat-image avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img alt="avatar img"
+                                            src="https://static.vecteezy.com/system/resources/thumbnails/009/749/751/small_2x/avatar-man-icon-cartoon-male-profile-mascot-illustration-head-face-business-user-logo-free-vector.jpg" />
+                                    </div>
+                                </div>
+                                <div class="chat-bubble">
+                                    <%= contact.comment %>
+                                </div>
+                            </div>
+                            <div class="flex justify-end"><form action="/admin/deletecontact/<%= contact._id %>?_method=DELETE" method="post"><button class="btn btn-error"><i class="fa-solid fa-trash"></i></button></form></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <% } %>
+            </div>
+        </details>
+    </section>
